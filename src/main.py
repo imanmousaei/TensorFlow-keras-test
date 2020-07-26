@@ -31,8 +31,13 @@ trainingSamples, trainingLabels = shuffle(trainingSamples, trainingLabels)
 scaler = MinMaxScaler(feature_range=(0, 1))
 scaledTrainingSamples = scaler.fit_transform(trainingSamples.reshape(-1, 1))
 
-"""
-for num in scaledTrainingSamples:
-    print(num)
-"""
 
+# creates neural network ( starting from 2nd layer cuz 1st layer is out numpy array trainingSamples )
+# Dense = fully connected layer
+model = Sequential([
+    Dense(units=16, input_shape=(1,), activation="relu"),  # input_shape??
+    Dense(units=32, activation="relu"),
+    Dense(units=1, activation="sigmoid")
+])
+
+model.summary()
