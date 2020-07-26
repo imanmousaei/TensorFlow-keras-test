@@ -31,13 +31,19 @@ trainingSamples, trainingLabels = shuffle(trainingSamples, trainingLabels)
 scaler = MinMaxScaler(feature_range=(0, 1))
 scaledTrainingSamples = scaler.fit_transform(trainingSamples.reshape(-1, 1))
 
-
 # creates neural network ( starting from 2nd layer cuz 1st layer is out numpy array trainingSamples )
 # Dense = fully connected layer
 model = Sequential([
-    Dense(units=16, input_shape=(1,), activation="relu"),  # input_shape??
-    Dense(units=32, activation="relu"),
-    Dense(units=1, activation="sigmoid")
+    Dense(units=16, input_shape=(1,), activation='relu'),  # input_shape??
+    Dense(units=32, activation='relu'),
+    Dense(units=2, activation='softmax')
 ])
 
-model.summary()
+# model.summary()
+
+model.compile(optimizer=Adam(learning_rate=0.0001), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+# batch_size : how many samples are processed by NN simultaneously
+# epochs : how many times all samples are processed by NN
+# verbose : log level
+model.fit(x=scaledTrainingSamples, y=trainingLabels, batch_size=10, epochs=30, shuffle=True, verbose=2)  # trains NN
