@@ -34,7 +34,7 @@ scaledTrainingSamples = scaler.fit_transform(trainingSamples.reshape(-1, 1))
 # creates neural network ( starting from 2nd layer cuz 1st layer is out numpy array trainingSamples )
 # Dense = fully connected layer
 model = Sequential([
-    Dense(units=16, input_shape=(1,), activation='relu'),  # input_shape??
+    Dense(units=16, input_shape=(1,), activation='relu'),  # todo input_shape??
     Dense(units=32, activation='relu'),
     Dense(units=2, activation='softmax')
 ])
@@ -49,8 +49,8 @@ model.compile(optimizer=Adam(learning_rate=0.0001), loss='sparse_categorical_cro
 model.fit(x=scaledTrainingSamples, y=trainingLabels, batch_size=10, epochs=30, shuffle=True, verbose=2)  # trains NN
 
 # testing NN :
-testSet = np.array([1, 100, 780, 900, 1010, -100])
-testAnswer = np.array([0, 0, 1, 1, 1, 0])
+testSet = np.array([1, 100, 780, 900, 1010, -100, 500])
+testAnswer = np.array([0, 0, 1, 1, 1, 0, 1])
 testSet = scaler.fit_transform(testSet.reshape(-1, 1))
 
 print()
