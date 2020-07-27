@@ -49,12 +49,14 @@ model.compile(optimizer=Adam(learning_rate=0.0001), loss='sparse_categorical_cro
 # batch_size : how many samples are processed by NN simultaneously
 # epochs : how many times all samples are processed by NN
 # verbose : log level
-model.fit(x=scaledTrainingSamples, y=trainingLabels, batch_size=10, epochs=30, shuffle=True, verbose=2)  # trains NN
+# validation_split : splits the last 20% of the trainingSamples for validation ( & 80% of it for training )
+model.fit(x=scaledTrainingSamples, y=trainingLabels, validation_split=0.2, batch_size=10, epochs=30, shuffle=True, verbose=2)  # trains NN
 
 # testing NN :
 testSet = np.array([1, 100, 780, 900, 1010, -100, 500])
 testAnswer = np.array([0, 0, 1, 1, 1, 0, 1])
 testSet = scaler.fit_transform(testSet.reshape(-1, 1))
+
 
 print()
 test = model.evaluate(x=testSet, y=testAnswer)
