@@ -7,6 +7,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Activation, Dense
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.metrics import categorical_crossentropy
+from tensorflow.python.keras.models import load_model
 
 trainingSamples = []
 trainingLabels = []
@@ -60,3 +61,9 @@ testSet = scaler.fit_transform(testSet.reshape(-1, 1))
 
 print()
 test = model.evaluate(x=testSet, y=testAnswer)
+
+# save the network :
+model.save('neural_network_models/test_model.h5')
+
+# load the network :
+new_model = load_model('neural_network_models/test_model.h5')
