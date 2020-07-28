@@ -63,7 +63,7 @@ print()
 test = model.evaluate(x=testSet, y=testAnswer)
 
 # save the network :
-model.save('neural_network_models/test_model.h5')
+model.save('../neural_network_models/test_model.h5')
 
 # load the network :
-new_model = load_model('neural_network_models/test_model.h5')
+new_model = load_model('../neural_network_models/test_model.h5')
